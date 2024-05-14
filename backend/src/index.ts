@@ -3,9 +3,7 @@ import bodyParser from 'body-parser';
 import { dataImport, connectToDatabase } from '../utils';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import customerRoutes from './routes/customer';
-import dicesRoutes from './routes/dices';
-import pastriesRoutes from './routes/pastries';
+import { customerRoutes, dicesRoutes, pastriesRoutes } from './routes';
 
 const app = express();
 
@@ -16,7 +14,7 @@ app.use(cors({
   credentials: true
 }))
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 dotenv.config();
 // dataImport();
