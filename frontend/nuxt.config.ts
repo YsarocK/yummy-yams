@@ -1,15 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-    ssr:false,
-    vite: {
-        server: {
-            watch: {
-                usePolling: true,
-            },
-        },
-    },
-  modules:[
-      "@pinia/nuxt"
-  ]
+  modules: ['@nuxtjs/tailwindcss'],
+  css: ['~/styles/main.pcss'],
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL || 'http://localhost:8080'
+    }
+  },
+  postcss: {
+    plugins: {
+      'tailwindcss/nesting': {},
+      'tailwindcss': {},
+      'postcss-nested': {}
+    }
+  }
 })

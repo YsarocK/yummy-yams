@@ -1,5 +1,5 @@
 # Use the official Node.js 14 image as base
-FROM node:21
+FROM node:20
 
 # Set working directory
 WORKDIR /app
@@ -14,4 +14,4 @@ RUN npm install
 COPY . .
 
 # Command to run the application
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
