@@ -1,16 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Document } from 'mongoose';
-
-interface ICustomer extends Document {
-  email: string;
-  firstName: string;
-  lastName: string;
-  launchs: Array<{
-    dices: number[],
-    pastries: number,
-    gain: Array<string>
-  }>;
-}
+import { ICustomer } from '../types';
 
 const customerSchema = new Schema({
   email: {
@@ -38,7 +27,3 @@ const Customer = model<ICustomer>('Customer', customerSchema);
 export {
   Customer,
 };
-
-export type {
-  ICustomer
-}

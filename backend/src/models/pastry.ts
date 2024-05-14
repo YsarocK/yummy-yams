@@ -1,12 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Document } from 'mongoose';
-
-export interface IPastry extends Document {
-  name: string;
-  image: string;
-  stock: number;
-  quantityLeft: number;
-}
+import { IPastry } from '../types';
 
 const pastrySchema = new Schema({
   name: {
