@@ -1,5 +1,7 @@
 import type { ICustomer } from "./customer";
+import type { IPastry } from "./pastry";
 
-export {
-  ICustomer
+export type {
+  ICustomer,
+  IPastry
 }

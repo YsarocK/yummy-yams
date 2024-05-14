@@ -1,4 +1,4 @@
-import type { ICustomer } from "~/types";
+import type { ICustomer, IPastry } from "~/types";
 
 const useApi = () => {
   const token = useCookie("token").value;
@@ -33,7 +33,7 @@ const useApi = () => {
   }
 
   const listPastries = async () => {
-    const response = await useFetch(`${apiUrl}/api/pastries/list`);
+    const response = await useFetch<Array<IPastry>>(`${apiUrl}/api/pastries/list`);
     return response;
   };
 
