@@ -1,10 +1,15 @@
 import { Schema, model } from 'mongoose';
 import { Document } from 'mongoose';
 
-export interface ICustomer extends Document {
+interface ICustomer extends Document {
   email: string;
   firstName: string;
   lastName: string;
+  launchs: Array<{
+    dices: number[],
+    pastries: number,
+    gain: Array<string>
+  }>;
 }
 
 const customerSchema = new Schema({
@@ -20,9 +25,20 @@ const customerSchema = new Schema({
   lastName: {
     type: String,
     required: true
+  },
+  launchs: {
+    type: Array,
+    required: true,
+    default: []
   }
 });
 
 const Customer = model<ICustomer>('Customer', customerSchema);
 
-export default Customer;
+export {
+  Customer,
+};
+
+export type {
+  ICustomer
+}

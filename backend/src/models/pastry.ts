@@ -5,7 +5,7 @@ export interface IPastry extends Document {
   name: string;
   image: string;
   stock: number;
-  quantityWon: number;
+  quantityLeft: number;
 }
 
 const pastrySchema = new Schema({
@@ -22,7 +22,7 @@ const pastrySchema = new Schema({
     type: Number,
     required: true
   },
-  quantityWon: {
+  quantityLeft: {
     type: Number,
     required: true
   }

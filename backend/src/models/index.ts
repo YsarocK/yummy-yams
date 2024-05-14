@@ -1,4 +1,5 @@
 import Pastry from './pastry';
-import Customer from './customer';
+import { Customer, ICustomer } from './customer';
 
 export { Pastry, Customer };
+export type { ICustomer }

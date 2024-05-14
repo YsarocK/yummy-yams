@@ -1,16 +1,20 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import dataImport from '../utils/dataImport';
-import connectToDatabase from '../utils/database';
+import { dataImport, connectToDatabase } from '../utils';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import customerRoutes from './routes/customer';
+import dicesRoutes from './routes/dices';
+import pastriesRoutes from './routes/pastries';
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3001',
+  credentials: true
+}))
 
 const port = 8080;
 
@@ -27,3 +31,5 @@ app.listen(port, async () => {
 });
 
 app.use('/api/customers', customerRoutes);
+app.use('/api/dices', dicesRoutes);
+app.use('/api/pastries', pastriesRoutes);

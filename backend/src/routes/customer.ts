@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import Customer, { ICustomer } from '../models/customer';
+import { Customer, ICustomer } from '../models';
 import { authenticateToken } from '../middleware/auth';
 import jwt from 'jsonwebtoken';
 
