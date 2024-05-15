@@ -17,6 +17,7 @@
 </template>
 
 <script setup lang="ts">
+const store = useCustomerStore()
 const errorMessage: Ref<string | undefined> = ref(undefined)
 const form = ref({
   email: '',
@@ -31,7 +32,8 @@ const handleRegister = async (e: Event) => {
   }
   
   if(data.value) {
-    useCookie('token').value = data.value?.token
+    window.localStorage.setItem('token', data.value?.token)
+    await store.retrieveCustomer(data.value?.token)
   }
 };
 </script>

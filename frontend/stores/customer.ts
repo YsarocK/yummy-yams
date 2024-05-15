@@ -4,10 +4,8 @@ import type { ICustomer } from '~/types/customer'
 export const useCustomerStore = defineStore('customer', () => {
   const customer: Ref<ICustomer | undefined> = ref(undefined)
 
-  const token = useCookie('token')
-
-  const retrieveCustomer = async () => {
-    if(token.value) {
+  const retrieveCustomer = async (token: string | undefined | null) => {
+    if(token) {
       const { data } = await useApi().me()
 
       if(data.value) {
@@ -16,14 +14,17 @@ export const useCustomerStore = defineStore('customer', () => {
     }
   }
 
+  if(process.server) return {
+    customer,
+    retrieveCustomer
+  }
+
+  const token = window.localStorage.getItem('token')
+
   onMounted(async () => {
     setTimeout(async () => {
-      await retrieveCustomer()
+      await retrieveCustomer(token)
     }, 50)
-  })
-
-  watchEffect(async (token) => {
-    await retrieveCustomer()
   })
 
   return {

@@ -24,6 +24,4 @@ const customerSchema = new Schema({
 
 const Customer = model<ICustomer>('Customer', customerSchema);
 
-export {
-  Customer,
-};
+export default Customer;

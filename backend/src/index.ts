@@ -1,23 +1,23 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { dataImport, connectToDatabase } from '../utils';
+import { connectToDatabase } from './utils';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { customerRoutes, dicesRoutes, pastriesRoutes } from './routes';
 
 const app = express();
 
+dotenv.config();
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: `http://localhost:${process.env.FRONT_PORT}`,
   credentials: true
 }))
 
-const port = process.env.PORT || 8080;
+const port = process.env.API_PORT || 8080;
 
-dotenv.config();
-// dataImport();
 
 app.get('/', (req, res) => {
   res.send("What are you doin' here ?");

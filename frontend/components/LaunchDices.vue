@@ -4,7 +4,6 @@
       <div class="flex gap-4">
         <Dice :number="dice" v-for="dice in currentDices.dices" />
       </div>
-      <p>{{ currentDices.pastries }}</p>
     </div>
     <button
       :disabled="customer.launchs.length > 2"
@@ -17,24 +16,22 @@
 </template>
 
 <script setup lang="ts">
+import type { DicesLaunch } from '~/types';
+
 const errorMessage: Ref<string | undefined> = ref(undefined)
 
 const store = useCustomerStore()
 const { customer } = storeToRefs(store)
 
-const currentDices: Ref<{
-  dices: number[]
-  pastries: string,
-  gain: Array<string>
-} | undefined > = ref(undefined)
+const currentDices: Ref<DicesLaunch | undefined > = ref(undefined)
 
 const handleLaunchDices = async (e: Event) => {
   e.preventDefault();
   const { data, error } = await useApi().launchDices()
-  currentDices.value = data.value
-  console.log(data.value)
-  if(error.value) {
+  if(error.value || !data.value) {
     errorMessage.value = error.value?.data.message as string
+    return
   }
+  currentDices.value = data.value
 }
 </script>

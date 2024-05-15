@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
-import { Customer, ICustomer } from '../models';
+import { Customer } from '../models';
 import { authenticateToken } from '../middleware/auth';
+import type { ICustomer } from '../types';
 import jwt from 'jsonwebtoken';
 
 const router = Router();

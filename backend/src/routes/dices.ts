@@ -1,8 +1,8 @@
 import { Router, Request, Response } from 'express';
-import { Customer, Pastry, ICustomer } from '../models';
+import { Customer, Pastry } from '../models';
 import { authenticateToken } from '../middleware/auth';
-import { launchDices, bestCombination } from '../../utils/dices';
-import { getRandomElements } from '../../utils';
+import { launchDices, bestCombination } from '../utils/dices';
+import { getRandomElements } from '../utils';
 
 const router = Router();
 

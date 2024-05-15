@@ -1,7 +1,8 @@
-import type { ICustomer, IPastry } from "~/types";
+import type { DicesLaunch, ICustomer, IPastry } from "~/types";
 
 const useApi = () => {
-  const token = useCookie("token").value;
+  const token = window.localStorage.getItem('token')
+
   const { retrieveCustomer } = useCustomerStore();
   const { apiUrl } = useRuntimeConfig().public;
 
@@ -23,12 +24,12 @@ const useApi = () => {
   };
 
   const launchDices = async () => {
-    const response = await useFetch<ICustomer>(`${apiUrl}/api/dices`,{
+    const response = await useFetch<DicesLaunch>(`${apiUrl}/api/dices`,{
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    await retrieveCustomer();
+    await retrieveCustomer(token);
     return response;
   }
 
