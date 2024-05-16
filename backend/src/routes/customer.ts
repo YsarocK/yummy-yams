@@ -18,7 +18,9 @@ router.post('/signup', async (req: Request, res: Response) => {
     customer = new Customer({ email, firstName, lastName });
     await customer.save();
 
-    const token = jwt.sign({ userId: customer._id }, process.env.JWT_SECRET as string);
+    const token = jwt.sign({ userId: customer._id }, process.env.JWT_SECRET as string, {
+      expiresIn: '1h',
+    });
     res.status(201).json({ message: 'Client enregistré avec succès.', token });
   } catch (err: any) {
     console.error(err.message);

@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   css: ['~/styles/main.pcss'],
   runtimeConfig: {
     public: {
-      apiUrl: `http://localhost:${process.env.API_PORT}` || 'http://localhost:zbzbzbz',
+      apiUrl: `http://localhost:${process.env.API_PORT}` || 'http://localhost:8080',
     }
   },
   postcss: {

@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import { Customer, Pastry } from '../models';
 import { authenticateToken } from '../middleware/auth';
 import { launchDices, bestCombination } from '../utils/dices';
-import { getRandomElements } from '../utils';
+import { getRandomElements, sendMail } from '../utils';
 
 const router = Router();
 
@@ -35,6 +35,10 @@ router.get('/', authenticateToken, async (req: Request, res: Response) => {
       launch.gain.push(pastry.name);
       pastry.quantityLeft -= 1;
       await pastry.save();
+    }
+
+    if (launch.gain.length > 0) {
+      sendMail({ gain: launch.gain.join(', '), customer });
     }
 
     customer.launchs.push(launch);
