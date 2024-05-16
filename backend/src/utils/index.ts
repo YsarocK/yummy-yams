@@ -1,4 +1,4 @@
-import getRandomElements from "./getRandomElements";
+import getRandomElements from "./dices/getRandomElements";
 import connectToDatabase from "./database";
 import sendMail from "./mailer";
 
